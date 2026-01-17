@@ -13,12 +13,13 @@ Petit Projet d'étude pour l'appel et l'utilisation d'une API. Recherche de Poke
 ## Fonctionnalités
 
 - Recherche de Pokémon par nom (insensible à la casse)
+- Autosuggestion de nom dans la barre de recherche
 - Appel à l'api [Tyradex](https://tyradex.vercel.app/) (données Pokémon en français)
 - Affichage du Pokémon sous forme de carte avec :
   - Image du Pokémon
   - Nom
-  - Type(s)
-  - Evolutions possibles
+  - Type(s) avec images
+  - Evolutions possibles avec sprites
 - Couleur du fond de la carte adapté type principal du Pokémon
 - Gestion des erreurs
 - Réinitialisation du formulaire et des résultats
@@ -49,7 +50,6 @@ pokeApp
 ## Améliorations prévues
 . ◻︎ Conteneurisation avec Docker de l'application
 . ◻︎ Déploiement de l'application
-. ◻︎ Suggestions de noms (autocomplétion) de Pokémons pour une recherche plus fluide
 . ◻︎ Recherche par type
 . ◻︎ Gestion d'un historique de recherche
 . ◻︎ Ajout des PV (vie, attaque, défense)
