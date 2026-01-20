@@ -130,6 +130,9 @@ class SearchPokemon {
 
       newCard.append(imgPokemon, namePokemon, typeContainer, evolContainer);
       document.querySelector(".cards").appendChild(newCard);
+      newCard.setAttribute("tabindex", "-1");
+      document.querySelector(".cards").appendChild(newCard);
+      newCard.focus({ preventScroll: false });
     } else {
       this.showErrorMessage("Pokémon non trouvé");
     }
@@ -248,8 +251,8 @@ class SearchPokemon {
   resetDiv() {
     this.form.reset();
     this.form.addEventListener("reset", () => {
-      const divs = document.querySelectorAll("div");
-      divs.forEach((div) => div.remove());
+      const pokemonCards = document.querySelectorAll(".cardPokemon");
+      pokemonCards.forEach((card) => card.remove());
     });
   }
 }
