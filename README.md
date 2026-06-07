@@ -3,6 +3,9 @@
 Petit Projet d'étude pour l'appel et l'utilisation d'une API. Recherche de Pokemon et affichage de ses caractéristiques.
 
 ---
+## Versions 
+**V1.0.1** - Correction de l'URL de l'API Tyradex
+**V1.0.0** - Version initiale
 
 ## Technologies utilisées
 
@@ -14,7 +17,7 @@ Petit Projet d'étude pour l'appel et l'utilisation d'une API. Recherche de Poke
 
 - Recherche de Pokémon par nom (insensible à la casse)
 - Autosuggestion de nom dans la barre de recherche
-- Appel à l'api [Tyradex](https://tyradex.vercel.app/) (données Pokémon en français)
+- Appel à l'api [Tyradex](https://tyradex.app/) (données Pokémon en français)
 - Affichage du Pokémon sous forme de carte avec :
   - Image du Pokémon
   - Nom

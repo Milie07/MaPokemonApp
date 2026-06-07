@@ -44,7 +44,7 @@ class SearchPokemon {
 
   // Récupération des données JSON
   async getPokemons() {
-    const response = await fetch("https://tyradex.vercel.app/api/v1/pokemon");
+    const response = await fetch("https://tyradex.app/api/v1/pokemon");
     const data = await response.json();
     // Filtrer MissingNo (pokedexId 0) de la liste
     this.pokemons = data.filter((pokemon) => pokemon.pokedex_id !== 0);
