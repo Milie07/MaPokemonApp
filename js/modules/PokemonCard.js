@@ -14,23 +14,27 @@ class PokemonCard {
 
   // Récupération des infos du Pokémon recherché et création de la carte
   createCard(pokemonData) {
+    const pokeId = pokemonData.pokedex_id;
     const name = pokemonData.name.fr;
     const spriteShiny = pokemonData.sprites.shiny;
     const spriteRegular = pokemonData.sprites.regular;
     const primaryType = pokemonData.types[0].name; // Premier type du Pokémon
-    const evolutions = pokemonData.evolution?.next?.map((evol) => evol.name).join(" → ") || "Dernier stade d'évolution";
 
     // Création de la carte Pokémon
     const newCard = document.createElement("div");
     newCard.classList = "cardPokemon";
     newCard.style.backgroundColor = TypeColors.getGoodColorType(primaryType);
 
-    // Ajout des Stats PV et 
+    const idPokemon = document.createElement("p");
+    idPokemon.className = "identifiant";
+    idPokemon.textContent = "N° : " + pokeId;
+
+    // Ajout des Stats PV et
 
     // Ajout de l'image du Pokémon
     const imgPokemon = document.createElement("img");
     imgPokemon.className = "cardPokemon_img";
-    imgPokemon.src = spriteShiny;
+    imgPokemon.src = spriteRegular;
     imgPokemon.alt = name;
 
     // Ajout du titre/nom du Pokémon
@@ -41,6 +45,7 @@ class PokemonCard {
     // Ajout du Type du Pokémon
     const typeContainer = document.createElement("div");
     typeContainer.className = "cardPokemon_types";
+
     pokemonData.types.forEach((type) => {
       const typeWrap = document.createElement("span");
       typeWrap.className = "cardPokemon_typeWrap";
@@ -54,7 +59,7 @@ class PokemonCard {
       typeContainer.appendChild(typeWrap);
     });
 
-    // Ajout des évolutions
+    // Ajout des évolutions / involutions
     const evolContainer = document.createElement("div");
     evolContainer.className = "cardPokemon_evolutions";
 
@@ -63,8 +68,9 @@ class PokemonCard {
     evolTitle.className = "cardPokemon_evolTitle";
     evolContainer.appendChild(evolTitle);
 
-    if (pokemonData.evolution?.next) {
-      if (pokemonData.evolution?.next.length <= 2){
+    // Ajout des évolutions (next)
+    if (pokemonData.evolution?.next?.length) {
+      if (pokemonData.evolution?.next.length <= 2) {
         evolContainer.style.overflowY = "hidden";
       }
       pokemonData.evolution.next.forEach((evol, index) => {
@@ -77,9 +83,7 @@ class PokemonCard {
         }
 
         // Chercher le Pokémon évolution dans la liste pour avoir son sprite
-        const evolPokemon = this.pokemons.find(
-          (p) => p.name.fr === evol.name
-        );
+        const evolPokemon = this.pokemons.find((p) => p.name.fr === evol.name);
 
         const evolItem = document.createElement("div");
         evolItem.className = "cardPokemon_evolItem";
@@ -95,7 +99,8 @@ class PokemonCard {
 
         evolItem.append(evolSprite, evolName);
         evolContainer.appendChild(evolItem);
-      });
+        
+      })
     } else {
       const noEvol = document.createElement("span");
       noEvol.textContent = "Dernier stade d'évolution";
@@ -103,10 +108,15 @@ class PokemonCard {
       evolContainer.style.overflowY = "hidden";
     }
 
-    newCard.append(imgPokemon, namePokemon, typeContainer, evolContainer);
+    newCard.append(
+      idPokemon,
+      imgPokemon,
+      namePokemon,
+      typeContainer,
+      evolContainer,
+    );
     document.querySelector(".cards").appendChild(newCard);
     newCard.setAttribute("tabindex", "-1");
-    document.querySelector(".cards").appendChild(newCard);
     newCard.focus({ preventScroll: false });
   }
 }

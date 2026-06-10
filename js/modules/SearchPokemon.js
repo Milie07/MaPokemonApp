@@ -81,12 +81,11 @@ class SearchPokemon {
 
   // Réinitialisation du formulaire et suppression des résultats affichés
   resetDiv() {
-    this.form.reset();
+    // this.form.reset();
     this.form.addEventListener("reset", () => {
       const pokemonCards = document.querySelectorAll(".cardPokemon");
       pokemonCards.forEach((card) => card.remove());
     });
-    this.autoSuggestion.clearSuggestions();
   }
 }
 

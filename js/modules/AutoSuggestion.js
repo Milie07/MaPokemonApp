@@ -32,7 +32,6 @@ class AutoSuggestion {
       results.forEach((poke) => {
         const pokeItem = document.createElement("li");
         pokeItem.textContent = poke.name.fr;
-        pokeItem.id = 
         pokeItem.ariaSelected = "true/false";
         pokeItem.role = "option";
         pokeItem.addEventListener("click", () => {
@@ -62,13 +61,13 @@ class AutoSuggestion {
       items.forEach((item, i) => {
         item.classList.toggle("selected", i === this.selectedIndex);
       });
+      
+    })
     this.input.addEventListener('blur', () => {
       setTimeout(() => {
         this.suggestionsBox.innerHTML = "";
         this.selectedIndex = -1;
       }, 150);
-
-    })
     });
   }
   clearSuggestions() {
