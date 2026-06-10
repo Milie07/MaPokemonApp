@@ -86,6 +86,7 @@ class SearchPokemon {
       const pokemonCards = document.querySelectorAll(".cardPokemon");
       pokemonCards.forEach((card) => card.remove());
     });
+    this.autoSuggestion.clearSuggestions();
   }
 }
 

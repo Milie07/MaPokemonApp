@@ -1,3 +1,17 @@
+:root {
+  --primary: rgb(254, 204, 1);
+  --secondary: #ffea00;
+  --secondary-opacity: #ffea004d;
+  --secondary-shad
+
+
+
+
+
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +19,6 @@
 }
 
 html {
-
   font-size: 100%;
 }
 
@@ -16,18 +29,25 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  padding: 20px;
+  padding: 10px;
   font-family: "Comic Neue", cursive;
+}
+
+header {
+  align-self: self-start;
 }
 
 h1 {
   font-family: "Modak", serif;
-  text-align: center;
   font-weight: lighter;
   font-size: 48px;
-  color: rgba(254, 204, 1, 1);
-  text-shadow: 2px 2px 4px rgba(33, 52, 110, 1);
-  -webkit-text-stroke: 2px rgba(58, 88, 171, 1);
+  color: var(--primary);
+  text-shadow: 2px 2px 4px rgb(33, 52, 110);
+  -webkit-text-stroke: 2px #3a58ab;
+}
+
+main{
+  flex-grow: 1;
 }
 
 /* Input  */
@@ -38,25 +58,30 @@ form {
   gap: 15px;
   width: 300px;
 }
+
 form label {
   text-align: center;
   font-size: 1.5rem;
 }
+
 input {
   border-radius: 15px;
   border: 3px solid rgba(255, 255, 255, 0.3);
   padding: 10px;
   font-size: 16px;
-  background-color: rgba(255, 234, 0, 0.3);
-  color: rgba(58, 88, 171, 1);
+  font-weight: bold;
+  background-color: var(--secondary);
+  color: #3a58ab;
   text-align: center;
 }
+
 input:focus {
   outline: none;
-  box-shadow: 0 0 5px rgba(33, 52, 110, 1);
+  box-shadow: 0 0 5px #21346e;
 }
+
 input::placeholder {
-  color: rgba(1, 1, 255, 0.3);
+  color: rgba(58, 88, 171, 0.3);
   font-style: italic;
 }
 
@@ -64,16 +89,17 @@ input::placeholder {
 .suggestions {
   list-style: none;
   border: 1px solid #ccc;
-  max-width: 300px;
+  max-width: 150px;
   max-height: 300px;
   overflow: scroll;
+  color: #3a58ab;
 }
 .suggestions li{
   padding: 8px 12px;
   cursor: pointer;
 }
 .suggestions li.selected {
-  background-color: rgba(255, 234, 0, 0.3);
+  background-color: var(--secondary);
 }
 .suggestions:empty {
   display: none;
@@ -86,6 +112,7 @@ input::placeholder {
   margin: 20px 0;
   justify-content: space-evenly;
 }
+
 button[type="submit"],
 button[type="reset"] {
   padding: 10px 20px;
@@ -93,16 +120,17 @@ button[type="reset"] {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  background-color: rgba(254, 204, 1, 1);
+  background-color: var(--primary);
   color: rgba(33, 52, 110, 1);
   font-family: "Comic Neue", cursive;
   border: 3px solid rgba(255, 255, 255, 0.3);
   transition: ease-in-out 0.3s all;
 }
+
 button[type="submit"]:hover,
 button[type="reset"]:hover {
   transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 5px var(--secondary);
 }
 
 /* Cartes Pokémons */
@@ -115,6 +143,7 @@ section.cards {
   flex: 1;
   width: 100%;
 }
+
 .cardPokemon {
   display: flex;
   flex-direction: column;
@@ -127,10 +156,12 @@ section.cards {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border: 3px solid rgba(255, 255, 255, 0.3);
 }
+
 .cardPokemon:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
 }
+
 .cardPokemon_name {
   font-size: 1.5rem;
   font-weight: bold;
@@ -139,6 +170,7 @@ section.cards {
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   letter-spacing: 1px;
 }
+
 .cardPokemon_img {
   width: 200px;
   height: 200px;
@@ -146,19 +178,48 @@ section.cards {
   filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   transition: transform 0.3s ease;
 }
+
 .cardPokemon:hover .cardPokemon_img {
   transform: scale(1.1);
 }
+
 .cardPokemon_types {
   display: flex;
   gap: 8px;
   justify-content: center;
 }
+
 .cardPokemon_typeImg {
   width: 30px;
   height: 30px;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3));
 }
+
+.cardPokemon_typeWrap {
+  position: relative;
+}
+
+.cardPokemon_typeWrap[data-tooltip]::after {
+  content: "Type: " attr(data-tooltip);
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.80rem;
+  font-weight: bolder;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.cardPokemon_typeWrap[data-tooltip]:hover::after,
+.cardPokemon_typeWrap[data-tooltip]:focus::after {
+  opacity: 1;
+}
+
 .cardPokemon_evolutions {
   display: flex;
   flex-wrap: wrap;
@@ -167,6 +228,7 @@ section.cards {
   overflow-y: scroll;
   width: 100%;
   height: 120px;
+  margin-top: 15px;
   padding: 10px;
   background: rgba(0, 0, 0, 0.2);
   border-radius: 10px;
@@ -176,28 +238,33 @@ section.cards {
   font-weight: bold;
   backdrop-filter: blur(5px);
 }
+
 .cardPokemon_evolTitle {
   width: 100%;
   text-align: center;
   font-size: 0.9rem;
   margin: 0 0 5px 0;
 }
+
 .cardPokemon_evolItem {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
 }
+
 .cardPokemon_evolSprite {
   width: 50px;
   height: 50px;
   object-fit: contain;
   filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.4));
 }
+
 .cardPokemon_evolName {
   font-size: 0.7rem;
   text-align: center;
 }
+
 .cardPokemon_evolArrow {
   font-size: 1.5rem;
   align-self: center;
@@ -207,21 +274,29 @@ section.cards {
 .cardPokemon_evolutions::-webkit-scrollbar {
   width: 6px;
 }
+
 .cardPokemon_evolutions::-webkit-scrollbar-track {
   background: transparent;
 }
+
 .cardPokemon_evolutions::-webkit-scrollbar-thumb {
   background: rgba(255, 255, 255, 0.5);
   border-radius: 3px;
 }
+
 .cardPokemon_evolutions::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.7);
 }
 
 footer {
   width: 100%;
-  margin-top: auto;
-  padding: 20px 0;
+  border-top: 1px solid var(--secondary-opacity);
+  margin-top: 20px;
+  padding-top: 10px;
   text-align: center;
   color: rgba(58, 88, 171, 1);
+}
+
+.specialChar {
+  font-size: 1.5rem;
 }

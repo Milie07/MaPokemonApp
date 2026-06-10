@@ -17,6 +17,7 @@ class AutoSuggestion {
   initAutoSuggestion() {
     this.suggestionsBox = document.createElement("ul");
     this.suggestionsBox.className = "suggestions";
+    this.suggestionsBox.role = "listbox"
     this.input.insertAdjacentElement("afterend", this.suggestionsBox);
     this.selectedIndex = -1;
 
@@ -26,11 +27,14 @@ class AutoSuggestion {
       this.suggestionsBox.innerHTML = "";
 
       const results = this.pokemons.filter((poke) =>
-        poke.name?.fr?.toLowerCase().includes(autoInput)
+        poke.name?.fr?.toLowerCase().startsWith(autoInput)
       );
       results.forEach((poke) => {
         const pokeItem = document.createElement("li");
         pokeItem.textContent = poke.name.fr;
+        pokeItem.id = 
+        pokeItem.ariaSelected = "true/false";
+        pokeItem.role = "option";
         pokeItem.addEventListener("click", () => {
           this.input.value = poke.name.fr;
           this.suggestionsBox.innerHTML = "";
@@ -58,8 +62,20 @@ class AutoSuggestion {
       items.forEach((item, i) => {
         item.classList.toggle("selected", i === this.selectedIndex);
       });
+    this.input.addEventListener('blur', () => {
+      setTimeout(() => {
+        this.suggestionsBox.innerHTML = "";
+        this.selectedIndex = -1;
+      }, 150);
+
+    })
     });
   }
+  clearSuggestions() {
+    this.suggestionsBox.innerHTML = "";
+    this.selectedIndex = -1;
+  }
 }
+
 
 export { AutoSuggestion };

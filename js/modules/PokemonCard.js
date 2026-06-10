@@ -15,34 +15,43 @@ class PokemonCard {
   // Récupération des infos du Pokémon recherché et création de la carte
   createCard(pokemonData) {
     const name = pokemonData.name.fr;
-    const sprite = pokemonData.sprites.regular;
+    const spriteShiny = pokemonData.sprites.shiny;
+    const spriteRegular = pokemonData.sprites.regular;
     const primaryType = pokemonData.types[0].name; // Premier type du Pokémon
-    const evolutions =
-      pokemonData.evolution?.next?.map((evol) => evol.name).join(" → ") ||
-      "Dernier stade d'évolution";
+    const evolutions = pokemonData.evolution?.next?.map((evol) => evol.name).join(" → ") || "Dernier stade d'évolution";
 
     // Création de la carte Pokémon
     const newCard = document.createElement("div");
     newCard.classList = "cardPokemon";
     newCard.style.backgroundColor = TypeColors.getGoodColorType(primaryType);
+
+    // Ajout des Stats PV et 
+
     // Ajout de l'image du Pokémon
     const imgPokemon = document.createElement("img");
     imgPokemon.className = "cardPokemon_img";
-    imgPokemon.src = sprite;
+    imgPokemon.src = spriteShiny;
     imgPokemon.alt = name;
+
     // Ajout du titre/nom du Pokémon
     const namePokemon = document.createElement("h2");
     namePokemon.className = "cardPokemon_name";
     namePokemon.textContent = name;
+
     // Ajout du Type du Pokémon
     const typeContainer = document.createElement("div");
     typeContainer.className = "cardPokemon_types";
     pokemonData.types.forEach((type) => {
+      const typeWrap = document.createElement("span");
+      typeWrap.className = "cardPokemon_typeWrap";
+      typeWrap.dataset.tooltip = type.name;
       const typeImg = document.createElement("img");
       typeImg.src = type.image;
-      typeImg.alt = type.name;
+      typeImg.alt = `pokemon de type: ${type.name}`;
       typeImg.className = "cardPokemon_typeImg";
-      typeContainer.appendChild(typeImg);
+
+      typeWrap.appendChild(typeImg);
+      typeContainer.appendChild(typeWrap);
     });
 
     // Ajout des évolutions
@@ -55,6 +64,9 @@ class PokemonCard {
     evolContainer.appendChild(evolTitle);
 
     if (pokemonData.evolution?.next) {
+      if (pokemonData.evolution?.next.length <= 2){
+        evolContainer.style.overflowY = "hidden";
+      }
       pokemonData.evolution.next.forEach((evol, index) => {
         // Ajouter une flèche avant chaque évolution (sauf la première)
         if (index > 0) {
@@ -88,6 +100,7 @@ class PokemonCard {
       const noEvol = document.createElement("span");
       noEvol.textContent = "Dernier stade d'évolution";
       evolContainer.appendChild(noEvol);
+      evolContainer.style.overflowY = "hidden";
     }
 
     newCard.append(imgPokemon, namePokemon, typeContainer, evolContainer);

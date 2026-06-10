@@ -21,20 +21,26 @@
       <h1>Ma Pokémon App</h1>
     </header>
     <main>
+      <div>
+        <p></p>
+      </div>
+
       <form>
-        <label for="pokemonName">Pokémon recherché :</label>
-        <input type="text" name="pokemonName" id="pokemonName" placeholder="ex: Pikachu" />
+        <label for="pokemonName"></label>
+        <input type="text" name="pokemonName" id="pokemonName" placeholder="ex: Pikachu" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="true/false" autocomplete="off"/>
         <div class="buttons">
           <button type="submit">Rechercher</button>
           <button type="reset">Réinitialiser</button>
         </div>
       </form>
+
+
+      <!-- section pour afficher les résultats avec JS-->
       <section class="cards" aria-label="cartes Pokémon"></section>
-      <!-- div pour afficher les résultats avec JS-->
       
     </main>
     <footer>
-      <p>© 2025 Ma Pokémon App - Student Project - Dev By Milie</p>
+      <p><span class="specialChar">&#169;</span> 2026 Ma Pokémon App - Student Project - Dev By Milie</p>
     </footer>
     <script src="./js/script.js" type="module"></script>
   </body>

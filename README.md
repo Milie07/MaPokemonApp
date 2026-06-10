@@ -4,8 +4,8 @@ Petit Projet d'étude pour l'appel et l'utilisation d'une API. Recherche de Poke
 
 ---
 ## Versions 
-**V1.0.1** - Correction de l'URL de l'API Tyradex
-**V1.0.0** - Version initiale
+- **V1.0.1** - Correction de l'URL de l'API Tyradex
+- **V1.0.0** - Version initiale
 
 ## Technologies utilisées
 
@@ -39,9 +39,9 @@ Petit Projet d'étude pour l'appel et l'utilisation d'une API. Recherche de Poke
    **Note:** Un serveur local est nécessaire car le projet utilise des modules ES6.
 
 ## Structure du projet
-
+```bash
 pokeApp
-|—index.html
+|—index.html.  
 |—css/
 | |_style.css
 |–js/
@@ -52,6 +52,7 @@ pokeApp
 |   |_PokemonCards.js
 |   |_TypeColors.js
 |–README.md
+```
 
 ## Déploiement
 
@@ -96,8 +97,11 @@ Le déploiement est automatisé via GitHub Pages à partir de la branche `main` 
 - **Architecture statique** : L'absence de backend élimine les risques liés aux injections SQL, aux failles serveur et aux attaques CSRF
 
 ## Améliorations prévues
-. ◻︎ Recherche par type
-. ◻︎ Gestion d'un historique de recherche
-. ◻︎ Ajout des PV (vie, attaque, défense)
-. ◻︎ Si Évolution il y a alors proposition des cartes correspondantes
-. ◻︎ Possibilités de création de decks personnalisés.
+- ◻︎ Amélioration de l'affichage
+- ◻︎ Recherche par type
+- ◻︎ Recherche par rareté
+- ◻︎ Ajout des PV (vie, attaque, défense)- ◻︎ Si Évolution il y a alors proposition des cartes correspondantes.
+- ◻︎ Possibilité de créer un compte (connexion / déconnexion)
+- ◻︎ Ajout des mentions légales, politique de confidentialié 
+- ◻︎ Gestion d'un historique de recherche
+- ◻︎ Possibilités de création de decks personnalisés.
